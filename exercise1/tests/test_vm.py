@@ -93,19 +93,20 @@ def test_vm_program3():
 ################################################################################################################
 #OUT OF MEMORY TEST
 ################################################################################################################
-    
+
+
 def test_vm_out_of_memory():
     # Path to the VM script
     vm_path = "../vm/vm.py"
     input_path = "mx_files_ok/out_of_memory.mx"
     output_path = "vm_test_output_temp.txt"
 
-    # Attempt to run the VM on an out-of-memory scenario
-    with pytest.raises(subprocess.CalledProcessError):
-        subprocess.check_call(["python", vm_path, input_path, output_path])
-    
-    os.remove(output_path)
-    
+    result = subprocess.run(["python", vm_path, input_path, output_path], stderr=subprocess.PIPE, text=True)
+
+    assert result.returncode != 0, "VM should have exited with an error"
+    assert "AssertionError: Program too long" in result.stderr
+
+
 ################################################################################################################
 #INSTRUCTION NOT FOUND TEST
 ################################################################################################################
