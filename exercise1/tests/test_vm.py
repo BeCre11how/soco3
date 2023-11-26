@@ -91,7 +91,7 @@ def test_vm_program3():
     assert vm_output == expected_output, "VM output does not match expected output for program1.mx"
     
 ################################################################################################################
-#OUT OF MEMORY TEST
+#OUT OF MEMORY TEST [DONE]
 ################################################################################################################
 
 
@@ -106,9 +106,10 @@ def test_vm_out_of_memory():
     assert result.returncode != 0, "VM should have exited with an error"
     assert "AssertionError: Program too long" in result.stderr
 
-
+    os.remove(output_path)
+    
 ################################################################################################################
-#INSTRUCTION NOT FOUND TEST
+#INSTRUCTION NOT FOUND TEST [DONE]
 ################################################################################################################
 
 def test_vm_instruction_not_found():
@@ -117,9 +118,9 @@ def test_vm_instruction_not_found():
     input_path = "mx_files_ok/invalid_instruction.mx"
     output_path = "vm_test_output_temp.txt"
 
-    # Attempt to run the VM on an invalid instruction scenario
-    with pytest.raises(subprocess.CalledProcessError):
-        subprocess.check_call(["python", vm_path, input_path, output_path])
+    result = subprocess.run(["python", vm_path, input_path, output_path], stderr=subprocess.PIPE, text=True)
 
-    os.remove(output_path)
+    assert result.returncode != 0, "VM should have exited with an error"
+    assert "Unknown op" in result.stderr
     
+    os.remove(output_path)
