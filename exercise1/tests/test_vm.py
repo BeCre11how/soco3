@@ -94,7 +94,6 @@ def test_vm_program3():
 #OUT OF MEMORY TEST [DONE]
 ################################################################################################################
 
-
 def test_vm_out_of_memory():
     # Path to the VM script
     vm_path = "../vm/vm.py"
