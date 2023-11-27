@@ -2,17 +2,20 @@ NUM_REG = 4  # number of registers
 RAM_LEN = 256  # number of words in RAM
 
 OPS = {
-    "hlt": {"code": 0x1, "fmt": "--"},  # Halt program
-    "ldc": {"code": 0x2, "fmt": "rv"},  # Load value
-    "ldr": {"code": 0x3, "fmt": "rr"},  # Load register
-    "cpy": {"code": 0x4, "fmt": "rr"},  # Copy register
-    "str": {"code": 0x5, "fmt": "rr"},  # Store register
-    "add": {"code": 0x6, "fmt": "rr"},  # Add
-    "sub": {"code": 0x7, "fmt": "rr"},  # Subtract
-    "beq": {"code": 0x8, "fmt": "rv"},  # Branch if equal
-    "bne": {"code": 0x9, "fmt": "rv"},  # Branch if not equal
-    "prr": {"code": 0xA, "fmt": "r-"},  # Print register
-    "prm": {"code": 0xB, "fmt": "r-"},  # Print memory
+    0x1: {"code": "hlt", "fmt": "--"},  # Halt program
+    0x2: {"code": "ldc", "fmt": "rv"},  # Load value
+    0x3: {"code": "ldr", "fmt": "rr"},  # Load register
+    0x4: {"code": "cpy", "fmt": "rr"},  # Copy register
+    0x5: {"code": "str", "fmt": "rr"},  # Store register
+    0x6: {"code": "add", "fmt": "rr"},  # Add
+    0x7: {"code": "sub", "fmt": "rr"},  # Subtract
+    0x8: {"code": "beq", "fmt": "rv"},  # Branch if equal
+    0x9: {"code": "bne", "fmt": "rv"},  # Branch if not equal
+    0xA: {"code": "prr", "fmt": "r-"},  # Print register
+    0xB: {"code": "prm", "fmt": "r-"},  # Print memory
+    0xC:{"code": "swp", "fmt": "rr"},
+    0xD: {"code": "inc", "fmt": "r-"},
+    0xE : {"code": "dec", "fmt": "r-"},
 }
 
 OP_MASK = 0xFF  # select a single byte
