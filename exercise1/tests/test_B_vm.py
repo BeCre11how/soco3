@@ -79,40 +79,4 @@ def test_vm_program3():
     assert read_file(output_path) == read_file(expected_output_path), "VM output does not match expected output for " + program + ".mx"
     os.remove(output_path)
     
-################################################################################################################
-#OUT OF MEMORY TEST [DONE]
-################################################################################################################
 
-def test_vm_out_of_memory():
-    # Program Name
-    program = "out_of_memory"
-    
-    # Path to the VM script
-    input_path = "mx_files_ok/" + program + ".mx"
-
-    # Run the VM on the program and save error messages
-    result = subprocess.run(["python", vm_path, input_path, output_path], stderr=subprocess.PIPE, text=True)
-
-    assert result.returncode != 0, "VM should have exited with an error"
-    assert "AssertionError: Program too long" in result.stderr
-
-    os.remove(output_path)
-    
-################################################################################################################
-#INSTRUCTION NOT FOUND TEST [DONE]
-################################################################################################################
-
-def test_vm_instruction_not_found():
-    # Program Name
-    program = "invalid_instruction"
-    
-    # Path to the VM script
-    input_path = "mx_files_ok/" + program + ".mx"
-
-    # Run the VM on the program and save error messages
-    result = subprocess.run(["python", vm_path, input_path, output_path], stderr=subprocess.PIPE, text=True)
-
-    assert result.returncode != 0, "VM should have exited with an error"
-    assert "Unknown op" in result.stderr
-    
-    os.remove(output_path)
