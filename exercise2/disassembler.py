@@ -46,7 +46,6 @@ class Disassembler:
                     if self.lines[i].endswith(arg):
                         temp.append((i, f"Loop{c}"))
                         c += 1
-                        break
             count += 1
 
         for index, string in temp[::-1]:
