@@ -1,6 +1,7 @@
 from architecture import OPS as ops
 import sys
 
+
 class Disassembler:
     def __init__(self, lines, writer):
         self.lines = lines[:-1]
@@ -8,6 +9,7 @@ class Disassembler:
         res = self.run()
         self.write_to_file(res)
 
+    # loops fehled no
     def disassemble(self, line):
         print(line)
         assert len(line) == 6, f"not correct format"
