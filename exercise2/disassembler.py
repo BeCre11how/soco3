@@ -4,14 +4,15 @@ import sys
 
 class Disassembler:
     count = 0
+
     def __init__(self, lines, writer):
         self.lines = lines[:-1]
         self.writer = writer
         res = self.run()
         self.write_to_file(res)
 
-    # loops fehled no
     def disassemble(self, line):
+        line = line.strip()
         if line.startswith("Loop"):
             return [line, -1, -1]
         assert len(line) == 6, f"not correct format"
@@ -35,27 +36,18 @@ class Disassembler:
                 Disassembler.count += 1
         return [operation, a, b]
 
-    def find_loops(self):
-        count = 0
+    def add_loops(self):
         temp = []
         c = 0
         for line in self.lines:
             if line.endswith(str(0x9)) or line.endswith(str(0x8)):
-                arg = line[:2]
-                for i in range(count -1, -1, -1):
-                    if self.lines[i].endswith(arg):
-                        temp.append((i, f"Loop{c}"))
-                        c += 1
-                        break
-            count += 1
-
+                temp.append((int(line[:2], 16), f"Loop{c}"))
         for index, string in temp[::-1]:
-            self.lines.insert(index, string)
-
+            self.lines.insert(int(str(index), 10), string)
 
     def run(self):
         res = []
-        self.find_loops()
+        self.add_loops()
         for x in self.lines:
             res.append(self.disassemble(x))
         return res
@@ -68,7 +60,9 @@ class Disassembler:
 
     def write_to_file(self, res):
         for x in res:
-            self.writer.writelines(f"{x[0]} {x[1]} {x[2]}\n" if len(x[0]) == 3 else f"{x[0]}:\n")
+            self.writer.writelines(
+                f"{x[0]} {x[1]} {x[2]}\n" if len(x[0]) == 3 else f"{x[0]}:\n"
+            )
 
 
 if __name__ == "__main__":
