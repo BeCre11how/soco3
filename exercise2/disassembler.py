@@ -42,6 +42,7 @@ class Disassembler:
         for line in self.lines:
             if line.endswith(str(0x9)) or line.endswith(str(0x8)):
                 temp.append((int(line[:2], 16), f"Loop{c}"))
+                c +=1
         for index, string in temp[::-1]:
             self.lines.insert(int(str(index), 10), string)
 
