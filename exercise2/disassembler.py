@@ -1,4 +1,4 @@
-from architecture import OPS as ops
+from architecture import OPS, NUM_REG, OP_WIDTH
 import sys
 
 
@@ -15,13 +15,13 @@ class Disassembler:
         line = line.strip()
         if line.startswith("Loop"):
             return [line, -1, -1]
-        assert len(line) == 6, f"not correct format"
+        assert len(line) == OP_WIDTH, f"not correct format"
         size = 2
         arr = [line[i : i + size] for i in range(0, 6, size)]
         op, arg1, arg2 = int(arr[2], 16), int(arr[1], 16), int(arr[0], 16)
-        assert op in ops, f"{op} is not a valid operation"
-        operation = ops[op]["code"]
-        form = ops[op]["fmt"]
+        assert op in OPS, f"{op} is not a valid operation"
+        operation = OPS[op]["code"]
+        form = OPS[op]["fmt"]
         a, b = "", ""
         if form == "r-":
             a = self.translate_params(arg1)
@@ -42,7 +42,7 @@ class Disassembler:
         for line in self.lines:
             if line.endswith(str(0x9)) or line.endswith(str(0x8)):
                 temp.append((int(line[:2], 16), f"Loop{c}"))
-                c +=1
+                c += 1
         for index, string in temp[::-1]:
             self.lines.insert(int(str(index), 10), string)
 
@@ -56,7 +56,7 @@ class Disassembler:
     @staticmethod
     def translate_params(arg1):
         arg1 = int(str(arg1), 10)
-        assert arg1 < 4, f"register with number {arg1} does not exist"
+        assert arg1 < NUM_REG, f"register with number {arg1} does not exist"
         return "R" + str(arg1)
 
     def write_to_file(self, res):
