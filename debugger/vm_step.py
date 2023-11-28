@@ -34,13 +34,14 @@ class VirtualMachineStep(VirtualMachineBase):
     def interact(self, addr):
         while self.state == VMState.STEPPING:
             try:
-                command = self.read(f"{addr:06x} [dmqrs]> ")
+                params = self.read(f"{addr:06x} [dmqrs]> ")
+                command = params[0]
                 if not command:
                     continue
                 elif command in {"d", "dis"}:
                     self.write(self.disassemble(addr, self.ram[addr]))
                 elif command in {"m", "memory"}:
-                    self.show()
+                    self.show(" ".join(params[1:]))
                 elif command in {"q", "quit"}:
                     self.state = VMState.FINISHED
                     break
@@ -64,7 +65,8 @@ class VirtualMachineStep(VirtualMachineBase):
 
     # [read]
     def read(self, prompt):
-        return self.reader(prompt).strip()
+        prompt = self.reader(prompt).strip().split(" ")
+        return prompt
     # [/read]
 
 if __name__ == "__main__":

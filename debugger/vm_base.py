@@ -122,7 +122,7 @@ class VirtualMachineBase:
         else:
             assert False, f"Unknown op {op:06x}"
 
-    def show(self):
+    def show(self, input=""):
         """Show the IP, registers, and memory."""
         # Show IP and registers
         self.write(f"IP{' ' * 6}= {self.ip:06x}")
@@ -130,16 +130,24 @@ class VirtualMachineBase:
             self.write(f"R{i:06x} = {r:06x}")
 
         # How much memory to show
-        top = max(i for (i, m) in enumerate(self.ram) if m != 0)
+        if input != "":
+            print(input)
+            temp = input.strip().split(" ")
+            if len(temp) == 1:
+                self.write(f"{int(temp[0],16):06x}    {self.ram[int(temp[0],16)]:06x}")
+                return
+
+        top = max(i for (i, m) in enumerate(self.ram) if m != 0) if input == "" else int(temp[1],16)
 
         # Show memory
-        base = 0
+        base = 0 if input == "" else int(temp[0],16)
         while base <= top:
             output = f"{base:06x}: "
             for i in range(COLUMNS):
                 output += f"  {self.ram[base + i]:06x}"
             self.write(output)
             base += COLUMNS
+
 
     def assert_is_register(self, reg):
         assert 0 <= reg < len(self.reg), f"Invalid register {reg:06x}"
