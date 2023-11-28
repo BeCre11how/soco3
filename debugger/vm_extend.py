@@ -31,12 +31,13 @@ class VirtualMachineExtend(VirtualMachineStep):
         while interacting:
             try:
                 command = self.read(f"{addr:06x} [{prompt}]> ")
+                assert len(command) == 1 or len(command) == 2, f"to many arguments\n"
                 if not command:
                     continue
-                elif command not in self.handlers:
-                    self.write(f"Unknown command {command}")
+                elif command[0] not in self.handlers:
+                    self.write(f"Unknown command {command[0]}")
                 else:
-                    interacting = self.handlers[command](self.ip)
+                    interacting = self.handlers[command[0]](self.ip) if len(command) == 1 else self.handlers[command[0]](int(command[1]))
             except EOFError:
                 self.state = VMState.FINISHED
                 interacting = False
@@ -51,9 +52,17 @@ class VirtualMachineExtend(VirtualMachineStep):
         return True
 
     # [memory]
-    def _do_memory(self, addr):
-        self.show()
-        return True
+    def _do_memory(self, *args):
+        if len(args) == 1:
+            addr = int(args[0], 16)
+            self.write(f"{addr:06x}: {self.ram[addr]:06x}")
+        elif len(args) == 2:
+            start_addr = int(args[0], 16)
+            end_addr = int(args[1], 16)
+            for addr in range(start_addr, end_addr + 1):
+                self.write(f"{addr:06x}: {self.ram[addr]:06x}")
+        else:
+            self.show()
     # [/memory]
 
     def _do_quit(self, addr):

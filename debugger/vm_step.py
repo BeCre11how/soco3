@@ -35,6 +35,7 @@ class VirtualMachineStep(VirtualMachineBase):
         while self.state == VMState.STEPPING:
             try:
                 params = self.read(f"{addr:06x} [dmqrs]> ")
+                assert len(params) == 1 or len(params) == 2 or len(params) == 3, f"to many arguments\n"
                 command = params[0]
                 if not command:
                     continue
