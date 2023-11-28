@@ -9,7 +9,7 @@ class VirtualMachineExtend(VirtualMachineStep):
     def __init__(self, reader=input, writer=sys.stdout):
         super().__init__(reader, writer)
         self.handlers = {
-            "dis": self._do_disassemble,
+            "disassemble": self._do_disassemble,
             "ip": self._do_ip,
             "memory": self._do_memory,
             "quit": self._do_quit,
