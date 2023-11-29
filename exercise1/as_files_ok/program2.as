@@ -1,4 +1,4 @@
-# Testing add, sub, beq
+# Testing ldc, add, sub, hlt
 
 ldc R0 5
 ldc R1 6

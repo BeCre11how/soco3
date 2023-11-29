@@ -13,9 +13,9 @@ OPS = {
     "bne": {"code": 0x9, "fmt": "rv"},  # Branch if not equal
     "prr": {"code": 0xA, "fmt": "r-"},  # Print register
     "prm": {"code": 0xB, "fmt": "r-"},  # Print memory
-    "swp": {"code": 0xC, "fmt": "rr"},
-    "inc": {"code": 0xD, "fmt": "r-"},
-    "dec": {"code": 0xE, "fmt": "r-"},
+    "swp": {"code": 0xC, "fmt": "rr"},  # What?
+    "inc": {"code": 0xD, "fmt": "r-"},  # What?
+    "dec": {"code": 0xE, "fmt": "r-"},  # What?
     
 }
 

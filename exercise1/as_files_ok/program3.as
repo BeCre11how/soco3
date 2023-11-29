@@ -1,4 +1,4 @@
-# Testing bne, prr, prm
+# Testing ldc, prm, prr, add, beq, hlt
 
 ldc R1 2
 ldc R0 1

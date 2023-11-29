@@ -1,4 +1,4 @@
-# Testing bne, prr
+# Testing ldc, prr, sub, bne, hlt
 
 ldc R0 3
 ldc R1 1

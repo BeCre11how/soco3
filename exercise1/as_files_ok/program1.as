@@ -1,4 +1,4 @@
-# Testing ldc, ldr, cpy, str
+# Testing ldc, ldr, cpy, str, hlt
 # R0 Tests ldc
 # R1 Tests ldr
 # R2 Tests cpy

@@ -166,6 +166,7 @@ def test_vm_program5():
     assert output == expected_output, "VM output does not match expected output for " + program + ".mx"
  
 ################################################################################################################
-#POSSIBLY FURTHER TESTS: (FROM test_A_assembler: swp, inc, dec)
+#POSSIBLY FURTHER TESTS: (FROM ASSEMBLER: swp, inc, dec -> correspond to missing lines 91, 93, 95 in vm.py test coverage)
+#       Add Test that coveres line 80: beq -> if self.reg[arg0] == 0: self.ip = arg1
 ################################################################################################################
 

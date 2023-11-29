@@ -55,7 +55,7 @@ def test_assembler_program_ex():
     assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
     
 ################################################################################################################
-#ASSEMBLER TEST 1 (Testing ldc, ldr, cpy, str)
+#ASSEMBLER TEST 1 (Testing ldc, ldr, cpy, str, hlt)
 ################################################################################################################
 
 def test_assembler_program1():
@@ -77,7 +77,7 @@ def test_assembler_program1():
     assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
 
 ################################################################################################################
-#ASSEMBLER TEST 2 (Testing add, sub, beq)
+#ASSEMBLER TEST 2 (Testing ldc, add, sub, hlt)
 ################################################################################################################
 
 def test_assembler_program2():
@@ -99,7 +99,7 @@ def test_assembler_program2():
     assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
 
 ################################################################################################################
-#ASSEMBLER TEST 3 (Testing bne, prr, prm)
+#ASSEMBLER TEST 3 (Testing ldc, prm, prr, add, beq, hlt)
 ################################################################################################################
 
 def test_assembler_program3():
@@ -121,7 +121,7 @@ def test_assembler_program3():
     assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
 
 ################################################################################################################
-#ASSEMBLER TEST 4 (Testing bne, prr) 
+#ASSEMBLER TEST 4 (Testing ldc, prr, sub, bne, hlt) 
 ################################################################################################################
 
 def test_assembler_program4():
@@ -165,5 +165,6 @@ def test_assembler_program5():
     assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
     
 ################################################################################################################
-#POSSIBLY FURTHER TESTS: (swp, inc, dec)
+#POSSIBLY FURTHER TESTS: (swp, inc, dec -> correspond to missing lines 91, 93, 95 in vm.py test coverage)
+#       Add Test that coveres line 80: beq -> if self.reg[arg0] == 0: self.ip = arg1
 ################################################################################################################

@@ -1,6 +1,7 @@
 [run]
 branch = True
 source = ../vm
+# omit = ../vm/arrays.py
 
 [report]
 show_missing = True
