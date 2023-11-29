@@ -1,5 +1,4 @@
 # Testing bne, prr
-# Counts from 3 backwards
 
 ldc R0 3
 ldc R1 1

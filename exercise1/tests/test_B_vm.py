@@ -13,7 +13,7 @@ vm_path = "../vm/vm.py"
 output_path = "vm_test_output_temp.txt"
 
 ################################################################################################################
-#VM TEST 0 (OUTPUT GENERATED)
+#VM TEST OUTPUT (OUTPUT GENERATED)
 ################################################################################################################
 
 def test_vm_program_output():
@@ -22,7 +22,6 @@ def test_vm_program_output():
      
     # Path to the VM script, for the .mx file, the expected output file and for the VM output file
     input_path = "mx_files_ok/" + program + ".mx"
-    expected_output_path = "vm_outputs_ok/" + program + ".txt"
     
     # Run the VM on the program
     subprocess.run(["python", vm_path, input_path, output_path])
@@ -32,9 +31,32 @@ def test_vm_program_output():
         
     # Ensure the VM output file exists
     assert output_bool, "VM did not create the output file"
+    
+################################################################################################################
+#VM TEST EXAMPLE (Testing given example file from task)
+################################################################################################################
+
+def test_vm_program_ex():
+    # Program Name
+    program = "count_up"
+     
+    # Path to the VM script, for the .mx file, the expected output file and for the VM output file
+    input_path = "mx_files_ok/" + program + ".mx"
+    expected_output_path = "vm_outputs_ok/" + program + ".txt"
+    
+    # Run the VM on the program
+    subprocess.run(["python", vm_path, input_path, output_path])
+    
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
+    os.remove(output_path)
+
+    # Assert that the VM's output matches the expected output
+    assert output == expected_output, "VM output does not match expected output for " + program + ".mx"
+
 
 ################################################################################################################
-#VM TEST 1
+#VM TEST 1 (TEST VM ON .mx TO CORRESPONDING ASSEMBLER TEST ON THE SAME PROGRAM NUMBER)
 ################################################################################################################
 
 def test_vm_program1():
@@ -56,7 +78,7 @@ def test_vm_program1():
     assert output == expected_output, "VM output does not match expected output for " + program + ".mx"
 
 ################################################################################################################
-#VM TEST 2
+#VM TEST 2 (TEST VM ON .mx TO CORRESPONDING ASSEMBLER TEST ON THE SAME PROGRAM NUMBER)
 ################################################################################################################
 
 def test_vm_program2():
@@ -78,7 +100,7 @@ def test_vm_program2():
     assert output == expected_output, "VM output does not match expected output for " + program + ".mx"
 
 ################################################################################################################
-#VM TEST 3
+#VM TEST 3 (TEST VM ON .mx TO CORRESPONDING ASSEMBLER TEST ON THE SAME PROGRAM NUMBER)
 ################################################################################################################
 
 def test_vm_program3():
@@ -100,7 +122,7 @@ def test_vm_program3():
     assert output == expected_output, "VM output does not match expected output for " + program + ".mx"
 
 ################################################################################################################
-#VM TEST 4
+#VM TEST 4 (TEST VM ON .mx TO CORRESPONDING ASSEMBLER TEST ON THE SAME PROGRAM NUMBER)
 ################################################################################################################
 
 def test_vm_program4():
@@ -121,5 +143,29 @@ def test_vm_program4():
     # Assert that the VM's output matches the expected output
     assert output == expected_output, "VM output does not match expected output for " + program + ".mx"
  
+################################################################################################################
+#VM TEST 5 (TEST VM ON .mx TO CORRESPONDING ASSEMBLER TEST ON THE SAME PROGRAM NUMBER)
+################################################################################################################
+
+def test_vm_program5():
+    # Program Name
+    program = "program5"
     
+    # Path to the VM script, for the .mx file, the expected output file and for the VM output file
+    input_path = "mx_files_ok/" + program + ".mx"
+    expected_output_path = "vm_outputs_ok/" + program + ".txt"
+    
+    # Run the VM on the program
+    subprocess.run(["python", vm_path, input_path, output_path])
+    
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
+    os.remove(output_path)
+
+    # Assert that the VM's output matches the expected output
+    assert output == expected_output, "VM output does not match expected output for " + program + ".mx"
+ 
+################################################################################################################
+#POSSIBLY FURTHER TESTS: (FROM test_A_assembler: swp, inc, dec)
+################################################################################################################
 
