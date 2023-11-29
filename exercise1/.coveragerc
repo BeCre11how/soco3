@@ -1,0 +1,16 @@
+[run]
+branch = True
+source = ../vm
+
+[report]
+show_missing = True
+exclude_lines =
+    # Don't include lines that are just 'pass'
+    pass
+
+    # Don't include lines with just a docstring or pragma: no cover
+    ^\s*'''
+    pragma: no cover
+
+    # Don't include lines with defensive programming assertions
+    if __name__ == .__main__.:
