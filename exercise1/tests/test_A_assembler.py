@@ -13,7 +13,7 @@ assembler_path = "../vm/assembler.py"
 output_path = "AS_test_output_temp.mx"
 
 ################################################################################################################
-#ASSEMBLER TEST - OUTPUT GENERATED
+#ASSEMBLER TEST 0 (OUTPUT GENERATED)
 ################################################################################################################
 
 def test_assembler_program_output():
@@ -26,13 +26,14 @@ def test_assembler_program_output():
     # Run the assembler on program1.as
     subprocess.run(["python", assembler_path, input_path, output_path])
     
-    # Ensure the ASSEMBLER output file exists
-    assert os.path.exists(output_path), "ASSEMBLER did not create the output file"
+    output_bool = os.path.exists(output_path)
     os.remove(output_path)
-
-
+    
+    # Ensure the ASSEMBLER output file exists
+    assert output_bool, "ASSEMBLER did not create the output file"
+    
 ################################################################################################################
-#ASSEMBLER TEST 1
+#ASSEMBLER TEST 1 (Testing ldc, ldr, cpy, str)
 ################################################################################################################
 
 def test_assembler_program1():
@@ -45,13 +46,16 @@ def test_assembler_program1():
     
     # Run the assembler on program1.as
     subprocess.run(["python", assembler_path, input_path, output_path])
-
-    # Assert that the assembler's output matches the expected output
-    assert read_file(output_path) == read_file(expected_output_path), "Assembler output does not match expected output for " + program + ".as"
+    
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
     os.remove(output_path)
 
+    # Assert that the assembler's output matches the expected output
+    assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
+
 ################################################################################################################
-#ASSEMBLER TEST 2
+#ASSEMBLER TEST 2 (Testing add, sub, beq)
 ################################################################################################################
 
 def test_assembler_program2():
@@ -65,12 +69,15 @@ def test_assembler_program2():
     # Run the assembler on program1.as
     subprocess.run(["python", assembler_path, input_path, output_path])
 
-    # Assert that the assembler's output matches the expected output
-    assert read_file(output_path) == read_file(expected_output_path), "Assembler output does not match expected output for " + program + ".as"
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
     os.remove(output_path)
 
+    # Assert that the assembler's output matches the expected output
+    assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
+
 ################################################################################################################
-#ASSEMBLER TEST 3
+#ASSEMBLER TEST 3 (Testing bne, prr, prm)
 ################################################################################################################
 
 def test_assembler_program3():
@@ -83,7 +90,32 @@ def test_assembler_program3():
     
     # Run the assembler on program1.as
     subprocess.run(["python", assembler_path, input_path, output_path])
+    
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
+    os.remove(output_path)
 
     # Assert that the assembler's output matches the expected output
-    assert read_file(output_path) == read_file(expected_output_path), "Assembler output does not match expected output for " + program + ".as"
+    assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
+
+################################################################################################################
+#ASSEMBLER TEST 4 (Testing bne, prr)
+################################################################################################################
+
+def test_assembler_program4():
+    # Program Name
+    program = "program4"
+    
+    # Path to the assembler script
+    input_path = "as_files_ok/" + program + ".as"
+    expected_output_path = "mx_files_ok/" + program + ".mx"
+    
+    # Run the assembler on program1.as
+    subprocess.run(["python", assembler_path, input_path, output_path])
+
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
     os.remove(output_path)
+
+    # Assert that the assembler's output matches the expected output
+    assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"

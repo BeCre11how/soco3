@@ -13,7 +13,7 @@ arrays_path = "../vm/arrays.py"
 vm_path = "../vm/vm.py"
 
 # Temporary Output Path
-output_path = "array__allocation_test_output_temp.txt"
+output_path = "array_allocation_test_output_temp.txt"
     
 ################################################################################################################
 #OUT OF MEMORY TEST [DONE]
@@ -21,7 +21,7 @@ output_path = "array__allocation_test_output_temp.txt"
 
 def test_vm_out_of_memory():
     # Program Name
-    program = "array"
+    program = "out_of_mem"
     
     # Path to the VM script
     input_path = "as_files_ok/" + program + ".as"
@@ -40,7 +40,7 @@ def test_vm_out_of_memory():
 
 def test_vm_instruction_not_found():
     # Program Name
-    program = "invalid_instruction"
+    program = "inv_inst"
     
     # Path to the VM script
     input_path = "mx_files_ok/" + program + ".mx"
