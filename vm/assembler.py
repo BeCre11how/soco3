@@ -50,7 +50,8 @@ class Assembler:
                 self._reg(args[1]), self._reg(args[0]), code
             )
 
-        elif fmt == "rv":
+        #elif fmt == "rv":
+        else:
             print(tokens)
             print("_val() result:")
             print(self._val(args[1], labels))
@@ -69,6 +70,7 @@ class Assembler:
                 self._val(args[1], labels),
                 self._reg(args[0]), code
             )
+
     # [/compile]
 
     # [value]
