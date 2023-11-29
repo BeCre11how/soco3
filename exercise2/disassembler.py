@@ -5,13 +5,13 @@ import sys
 class Disassembler:
     count = 0
 
-    def __init__(self, lines, writer):
+    def disassemble(self, lines, writer):
         self.lines = lines[:-1]
         self.writer = writer
-        res = self.run()
+        res = self.disassemble_file()
         self.write_to_file(res)
 
-    def disassemble(self, line):
+    def disassemble_line(self, line):
         line = line.strip()
         if line.startswith("Loop"):
             return [line, -1, -1]
@@ -46,11 +46,11 @@ class Disassembler:
         for index, string in temp[::-1]:
             self.lines.insert(int(str(index), 10), string)
 
-    def run(self):
+    def disassemble_file(self):
         res = []
         self.add_loops()
         for x in self.lines:
-            res.append(self.disassemble(x))
+            res.append(self.disassemble_line(x))
         return res
 
     @staticmethod
@@ -65,9 +65,11 @@ class Disassembler:
                 f"{x[0]} {x[1]} {x[2]}\n" if len(x[0]) == 3 else f"{x[0]}:\n"
             )
 
-
-if __name__ == "__main__":
+def main(cls):
     assert len(sys.argv) == 3, f"Usage: {sys.argv[0]} input|- output|-"
     reader = open(sys.argv[1], "r") if (sys.argv[1] != "-") else sys.stdin
     writer = open(sys.argv[2], "w") if (sys.argv[2] != "-") else sys.stdout
-    Disassembler(reader.read().split("\n"), writer)
+    cls().disassemble(reader.read().split("\n"), writer)
+
+if __name__ == "__main__":
+    main(Disassembler)
