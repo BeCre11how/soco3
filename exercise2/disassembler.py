@@ -3,7 +3,7 @@ import sys
 
 
 class Disassembler:
-    count = 0
+    __count = 0
 
     def _disassemble(self, lines, writer):
         self.__lines = lines[:-1]
@@ -32,8 +32,8 @@ class Disassembler:
             a = self.__translate_params(arg1)
             b = int(str(arg2), 10)
             if operation == "bne" or operation == "beq":
-                b = f"@Loop{Disassembler.count}"
-                Disassembler.count += 1
+                b = f"@Loop{Disassembler.__count}"
+                Disassembler.__count += 1
         return [operation, a, b]
 
     def __add_loops(self):
