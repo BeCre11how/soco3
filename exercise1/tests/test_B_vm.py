@@ -4,8 +4,8 @@ import os
 # Support function
 def read_file(file_path):
     with open(file_path, 'r') as file:
-        return file.readlines()
-        
+        file = file.read()
+        return list(filter(lambda x: x != '', file.split("\n")))
 # VM path
 vm_path = "../vm/vm.py"
 
@@ -167,6 +167,7 @@ def test_vm_program5():
  
 ################################################################################################################
 #POSSIBLY FURTHER TESTS: (FROM ASSEMBLER: swp, inc, dec -> correspond to missing lines 91, 93, 95 in vm.py test coverage)
-#       Add Test that coveres line 80: beq -> if self.reg[arg0] == 0: self.ip = arg1
+#       Add Test that coveres vm line 80: beq -> if self.reg[arg0] == 0: self.ip = arg1
+#       Add TEst that covers assembler line 53: elif 
 ################################################################################################################
 

@@ -4,7 +4,8 @@ import os
 # Support function
 def read_file(file_path):
     with open(file_path, 'r') as file:
-        return file.readlines()
+        file = file.read()
+        return list(filter(lambda x: x != '', file.split("\n")))
 
 # Assembler Path
 assembler_path = "../vm/assembler.py"
