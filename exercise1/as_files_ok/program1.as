@@ -1,13 +1,13 @@
-# Count up to 3.
-# - R0: loop index.
-# - R1: loop limit.
-ldc R0 0
-ldc R1 1
-loop:
-prr R0
-ldc R2 1
-add R0 R2
-cpy R2 R1
-sub R2 R0
-bne R2 @loop
+# Testing ldc, ldr, cpy, str, hlt
+# R0 Tests ldc
+# R1 Tests ldr
+# R2 Tests cpy
+# R3 Tests str
+
+ldc R0 2
+ldr R1 R0
+ldc R2 0
+ldc R3 0
+cpy R2 R0
+str R3 R0
 hlt

@@ -13,7 +13,7 @@ assembler_path = "../vm/assembler.py"
 output_path = "AS_test_output_temp.mx"
 
 ################################################################################################################
-#ASSEMBLER TEST - OUTPUT GENERATED
+#ASSEMBLER TEST OUTPUT (OUTPUT GENERATED)
 ################################################################################################################
 
 def test_assembler_program_output():
@@ -26,13 +26,36 @@ def test_assembler_program_output():
     # Run the assembler on program1.as
     subprocess.run(["python", assembler_path, input_path, output_path])
     
+    output_bool = os.path.exists(output_path)
+    os.remove(output_path)
+    
     # Ensure the ASSEMBLER output file exists
-    assert os.path.exists(output_path), "ASSEMBLER did not create the output file"
+    assert output_bool, "ASSEMBLER did not create the output file"
+    
+################################################################################################################
+#ASSEMBLER TEST EXAMPLE (Testing given example file from task)
+################################################################################################################
+
+def test_assembler_program_ex():
+    # Program Name
+    program = "count_up"
+    
+    # Path to the assembler script
+    input_path = "as_files_ok/" + program + ".as"
+    expected_output_path = "mx_files_ok/" + program + ".mx"
+    
+    # Run the assembler on count_up.as
+    subprocess.run(["python", assembler_path, input_path, output_path])
+    
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
     os.remove(output_path)
 
-
+    # Assert that the assembler's output matches the expected output
+    assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
+    
 ################################################################################################################
-#ASSEMBLER TEST 1
+#ASSEMBLER TEST 1 (Testing ldc, ldr, cpy, str, hlt)
 ################################################################################################################
 
 def test_assembler_program1():
@@ -45,13 +68,16 @@ def test_assembler_program1():
     
     # Run the assembler on program1.as
     subprocess.run(["python", assembler_path, input_path, output_path])
-
-    # Assert that the assembler's output matches the expected output
-    assert read_file(output_path) == read_file(expected_output_path), "Assembler output does not match expected output for " + program + ".as"
+    
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
     os.remove(output_path)
 
+    # Assert that the assembler's output matches the expected output
+    assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
+
 ################################################################################################################
-#ASSEMBLER TEST 2
+#ASSEMBLER TEST 2 (Testing ldc, add, sub, hlt)
 ################################################################################################################
 
 def test_assembler_program2():
@@ -62,15 +88,18 @@ def test_assembler_program2():
     input_path = "as_files_ok/" + program + ".as"
     expected_output_path = "mx_files_ok/" + program + ".mx"
     
-    # Run the assembler on program1.as
+    # Run the assembler on program2.as
     subprocess.run(["python", assembler_path, input_path, output_path])
 
-    # Assert that the assembler's output matches the expected output
-    assert read_file(output_path) == read_file(expected_output_path), "Assembler output does not match expected output for " + program + ".as"
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
     os.remove(output_path)
 
+    # Assert that the assembler's output matches the expected output
+    assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
+
 ################################################################################################################
-#ASSEMBLER TEST 3
+#ASSEMBLER TEST 3 (Testing ldc, prm, prr, add, beq, hlt)
 ################################################################################################################
 
 def test_assembler_program3():
@@ -81,9 +110,61 @@ def test_assembler_program3():
     input_path = "as_files_ok/" + program + ".as"
     expected_output_path = "mx_files_ok/" + program + ".mx"
     
-    # Run the assembler on program1.as
+    # Run the assembler on program3.as
     subprocess.run(["python", assembler_path, input_path, output_path])
+    
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
+    os.remove(output_path)
 
     # Assert that the assembler's output matches the expected output
-    assert read_file(output_path) == read_file(expected_output_path), "Assembler output does not match expected output for " + program + ".as"
+    assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
+
+################################################################################################################
+#ASSEMBLER TEST 4 (Testing ldc, prr, sub, bne, hlt) 
+################################################################################################################
+
+def test_assembler_program4():
+    # Program Name
+    program = "program4"
+    
+    # Path to the assembler script
+    input_path = "as_files_ok/" + program + ".as"
+    expected_output_path = "mx_files_ok/" + program + ".mx"
+    
+    # Run the assembler on program4.as
+    subprocess.run(["python", assembler_path, input_path, output_path])
+
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
     os.remove(output_path)
+
+    # Assert that the assembler's output matches the expected output
+    assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
+    
+################################################################################################################
+#ASSEMBLER TEST 5 (Testing hlt) 
+################################################################################################################
+
+def test_assembler_program5():
+    # Program Name
+    program = "program5"
+    
+    # Path to the assembler script
+    input_path = "as_files_ok/" + program + ".as"
+    expected_output_path = "mx_files_ok/" + program + ".mx"
+    
+    # Run the assembler on program5.as
+    subprocess.run(["python", assembler_path, input_path, output_path])
+
+    output = read_file(output_path)
+    expected_output = read_file(expected_output_path)
+    os.remove(output_path)
+
+    # Assert that the assembler's output matches the expected output
+    assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
+    
+################################################################################################################
+#POSSIBLY FURTHER TESTS: (swp, inc, dec -> correspond to missing lines 91, 93, 95 in vm.py test coverage)
+#       Add Test that coveres line 80: beq -> if self.reg[arg0] == 0: self.ip = arg1
+################################################################################################################
