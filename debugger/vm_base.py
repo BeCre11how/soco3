@@ -131,7 +131,6 @@ class VirtualMachineBase:
 
         # How much memory to show
         if input != "":
-            print(input)
             temp = input.strip().split(" ")
             if len(temp) == 1:
                 self.write(f"{int(temp[0],16):06x}    {self.ram[int(temp[0],16)]:06x}")
@@ -140,7 +139,7 @@ class VirtualMachineBase:
         top = max(i for (i, m) in enumerate(self.ram) if m != 0) if input == "" else int(temp[1],16)
 
         # Show memory
-        base = 0 if input == "" else int(temp[0],16)
+        base = 0 if input == "" else int(temp[0], 16)
         while base <= top:
             output = f"{base:06x}: "
             for i in range(COLUMNS):
