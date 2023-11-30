@@ -1,6 +1,6 @@
-### README file for all files for assignment 3
+# README file for all files for assignment 3
 ## 1 Unit Testing
-# File Structure
+### File Structure
 - exercise1/
   - pytest.ini
   - .coveragerc
@@ -21,7 +21,7 @@
     - test_B_vm.py
     - test_C.py
 
-# Files
+### Files
 - `exercise1/`: The directory where all the files for the first part of the assignment are stored.
 - `pytest.ini`: Configuration file for `pytest`; sets `--cov` as default argument for entire directory, allows coverage report to be called with just `pytest`.
 - `.coveragerc`: Configuration file `pytest coverage`; specifies the line coverage and which lines are to be excluded.
@@ -33,7 +33,7 @@
 - `test_B_vm.py`: A file containing tests that are ran on `vm.py`.
 - `test_C.py`: A file containing all tests that are ran on `array.py` and `vm.py`.
 
-# Pytest
+### Pytest
 The `pytest` testing framework has been implemented.
 From inside this task directory `exercise 1/` all tests will be run returning a test coverage report.
 `pytest` has been configured to use `--cov` as a default argument when called using `pytest` from the command line.
@@ -48,17 +48,17 @@ Usage (from command line):
 
 Further explanation under # Task (D)
 
-# Task (A)
+### Task (A)
 - `test_A_assembler.py`: Main file for this task; containing extensive tests on the `assembler.py`.
 
 
-# Task (B)
+### Task (B)
 - `test_B_vm.py`: Main file for this task; containing extensive tests on the `vm.py`.
 
-# Task (C)
+### Task (C)
 - `test_C.py`: Main file for this task; containing selected tests on `arrays.py` and `vm.py`.
 
-# Task (D)
+### Task (D)
 Test coverage is reported in % for all tests when ran using `pytest` from the `exercise 1` directory.
 Line coverage is configured within the `.coveragerc` file in the `exercise 1/` directory.
 
