@@ -10,6 +10,6 @@ beq R1 2
 beq R0 1
 sub R0 R1
 loop:
-sub R0 R1
+sub R0 R2
 beq R0 @loop
 hlt
