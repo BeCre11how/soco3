@@ -6,7 +6,7 @@ class Disassembler:
     __count = 0
 
     def _disassemble(self, lines, writer):
-        self.__lines = lines[:-1]
+        self.__lines = lines
         self.__writer = writer
         res = self._disassemble_file()
         self.__write_to_file(res)
@@ -68,7 +68,7 @@ def main(cls):
     assert len(sys.argv) == 3, f"Usage: {sys.argv[0]} input|- output|-"
     reader = open(sys.argv[1], "r") if (sys.argv[1] != "-") else sys.stdin
     writer = open(sys.argv[2], "w") if (sys.argv[2] != "-") else sys.stdout
-    cls()._disassemble(reader.read().split("\n"), writer)
+    cls()._disassemble(reader.read().strip().split("\n"), writer)
 
 
 if __name__ == "__main__":
