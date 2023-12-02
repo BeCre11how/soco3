@@ -13,9 +13,9 @@ OPS = {
     0x9: {"code": "bne", "fmt": "rv"},  # Branch if not equal
     0xA: {"code": "prr", "fmt": "r-"},  # Print register
     0xB: {"code": "prm", "fmt": "r-"},  # Print memory
-    0xC:{"code": "swp", "fmt": "rr"},
-    0xD: {"code": "inc", "fmt": "r-"},
-    0xE : {"code": "dec", "fmt": "r-"},
+    0xC:{"code": "swp", "fmt": "rr"},   # Swap two values
+    0xD: {"code": "inc", "fmt": "r-"},  #increase reg by one
+    0xE : {"code": "dec", "fmt": "r-"}, #decrease reg by one
 }
 
 OP_MASK = 0xFF  # select a single byte
