@@ -81,7 +81,7 @@ class VirtualMachineBreak(VirtualMachineExtend):
         for addr, oldval in self.watchpoints:
             if oldval != self.ram[addr]:
                 self.write(f"value at adress {addr} changed")
-                self.ram.insert(self.ip, 15)
+                self.show()
 
     def _update_watchpoints(self):
         for x in self.watchpoints:

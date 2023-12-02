@@ -25,12 +25,12 @@ class VirtualMachineExtend(VirtualMachineStep):
         while interacting:
             try:
                 command = self.read(f"{addr:06x} [{prompt}]> ")
-                assert len(command) == 1 or len(command) == 2, f"to many arguments\n"
+                assert len(command) == 1 or len(command) == 2 or len(command) == 3, f"to many arguments\n"
                 if not command:
                     continue
                 else:
                     arg = self.__check_if_in_ops(command[0])
-                    interacting = self.handlers[arg](self.ip) if len(command) == 1 else self.handlers[arg](int(command[1]))
+                    interacting = self.handlers[arg](self.ip) if len(command) == 1 else self.handlers[arg](int(command[1])) if arg != "memory" else self._do_memory(command[1:])
             except EOFError:
                 self.state = VMState.FINISHED
                 interacting = False
@@ -53,17 +53,9 @@ class VirtualMachineExtend(VirtualMachineStep):
         return True
 
     # [memory]
-    def _do_memory(self, *args):
-        if len(args) == 1:
-            addr = int(str(args[0]), 16)
-            self.write(f"{addr:06x}: {self.ram[addr]:06x}")
-        elif len(args) == 2:
-            start_addr = int(str(args[0]), 16)
-            end_addr = int(str(args[1]), 16)
-            for addr in range(start_addr, end_addr + 1):
-                self.write(f"{addr:06x}: {self.ram[addr]:06x}")
-        else:
-            self.show()
+    def _do_memory(self, args):
+        arg = " ".join(args) if isinstance(args, list) else ""
+        super().show(arg)
     # [/memory]
 
     def _do_quit(self, addr):
