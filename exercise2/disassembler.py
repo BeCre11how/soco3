@@ -45,7 +45,6 @@ class Disassembler:
                 c += 1
         for index, string in temp[::-1]:
            self.__lines.insert(int(str(index), 10), string)
-       #temp = [(int(line[:2], 16), f"Loop{i}") for line, i in zip(self.__lines, range(len(self.__lines))) if (line.endswith(str(0x9)) or line.endswith(str(0x8)))]
 
     def _disassemble_file(self):
         self._add_loops()

@@ -16,3 +16,4 @@ add R0 R2
 cpy R2 R1
 sub R2 R0
 bne R2 @Loop1
+hlt
