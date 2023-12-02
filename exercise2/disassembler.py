@@ -8,10 +8,10 @@ class Disassembler:
     def _disassemble(self, lines, writer):
         self.__lines = lines[:-1]
         self.__writer = writer
-        res = self.__disassemble_file()
+        res = self._disassemble_file()
         self.__write_to_file(res)
 
-    def __disassemble_line(self, line):
+    def _disassemble_line(self, line):
         line = line.strip()
         if line.startswith("Loop"):
             return [line, -1, -1]
@@ -36,7 +36,7 @@ class Disassembler:
                 Disassembler.__count += 1
         return [operation, a, b]
 
-    def __add_loops(self):
+    def _add_loops(self):
         temp = []
         c = 0
         for line in self.__lines:
@@ -47,9 +47,9 @@ class Disassembler:
            self.__lines.insert(int(str(index), 10), string)
        #temp = [(int(line[:2], 16), f"Loop{i}") for line, i in zip(self.__lines, range(len(self.__lines))) if (line.endswith(str(0x9)) or line.endswith(str(0x8)))]
 
-    def __disassemble_file(self):
-        self.__add_loops()
-        return [self.__disassemble_line(x) for x in self.__lines]
+    def _disassemble_file(self):
+        self._add_loops()
+        return [self._disassemble_line(x) for x in self.__lines]
 
     @staticmethod
     def __translate_params(arg1):
