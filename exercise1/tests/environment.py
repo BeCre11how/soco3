@@ -1,1 +1,1 @@
-environment = "python3"
+environment = "python"
