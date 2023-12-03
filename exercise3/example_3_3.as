@@ -2,7 +2,7 @@ ldc R2 @arr_length
 ldc R0 0
 
 #set length of array here
-ldc R1 28
+ldc R1 14
 str R1 R2
 
 ldc R2 @array
@@ -24,9 +24,6 @@ ldc R3 @arr_length
 ldr R2 R3
 #now pointing to tail
 add R1 R2
-
-ldc R2 0
-ldc R3 0
 
 loop2:
 # load head
@@ -70,9 +67,8 @@ bne R3 @loop2
 
 ldc R3 @arr_length
 ldr R1 R3
-ldc R0 0
 ldc R2 @array
-
+inc R2
 #print array
 
 loop3:
@@ -80,8 +76,6 @@ prm R2
 inc R2
 dec R1
 bne R1 @loop3
-prm R2
-
 hlt
 
 .data
