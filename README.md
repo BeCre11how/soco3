@@ -76,3 +76,44 @@ Lines to be excluded from the coverage report are the following:
 ## 3 New features and Problems - Assembler
 
 ## 4 New features - Debugger
+to run the debugger you have different options, run vm_step.py for 4.1, vm_extend.py for 4.3, and vm_break.py for all features
+one additional note, when vm_base or vm_step is run, command have to be specified by either only the initial char of the method or the entire name
+
+
+### Usage(bash):
+Inside the `debugger` directory:
+- `python desired_level.py desired_program.mx`
+
+### 4.1 Show Memory range
+with this feature the user now has 3 options:
+- print entire memory
+- print memory at certain address
+- print the range from initial address to end address including end
+
+to achieve the above described behaviour the user can for example run m, for option 1,
+m 2 for option 2 and m 2 10 for option 3
+
+### 4.2 Breakpoint Addresses 
+For this feature to be enabled the user needs to run the vm_break.py. The user now has the following options:
+- set a breakpoint at the specified address
+- clear a breakpoint at the specified address
+
+to run this feature the user only has to specify b 2, to set a breakpoint at address 2, or c 2, to clear a breakpoint at address 2
+
+### 4.3 Command Completion
+Only vm_extend.py has to be run, it also works with vm_break.py. The user can now type any leading matching characters of the commands he wants to execute
+and the vm takes care of it.
+The user can choose from the following options:
+- `disassemble` writes the disassembled command at the address location
+- `ip` shows the ip, can also be seen on the very left of console
+- `memory` shows memory(more in 4.1)
+- `quit` quits the vm
+- `run` runs the program
+- `step` executes the next step of the program
+- `break` sets a breakpoint at the specified address
+- `clear` clears a breakpoint at the specified address
+- `watchpoint` sets a watchpoint at the specified address
+
+For example if the user wants to run `memory`, he can achieve that by running `m`, `me`, `mem`
+
+### 4.4 Watchpoints
