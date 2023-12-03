@@ -95,6 +95,11 @@ The disassembler performs the following steps:
 - Parameter Translation: Translates register numbers to assembly code format (e.g., R1).
 - Output Formatting: Writes the disassembled output with proper formatting.
 
+### Testing
+The disassembler was thoroughly tested on its functionalities using pytest. This can be done via terminal the same way as in exercise 1:
+1. Head to directory "exercise2": `cd exercise2`
+2. Run the tests: `pytest`
+
 ## 3 New features and Problems - Assembler
 In the exercise 3 subdirectory one can find the files for the tasks described below. To run the files and see examples produced by the new operation:
 - `python ../vm/assembler.py desired_example.as desired_output.mx` followed by
