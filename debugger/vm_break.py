@@ -43,6 +43,7 @@ class VirtualMachineBreak(VirtualMachineExtend):
 
             else:
                 if watchpoint_reached:
+                    self.write("watch triggered")
                     super().show()
                     self.state = VMState.STEPPING
                 if self.state == VMState.STEPPING:
