@@ -129,19 +129,18 @@ class VirtualMachineBase:
             self.write(f"IP{' ' * 6}= {self.ip:06x}")
             for (i, r) in enumerate(self.reg):
                 self.write(f"R{i:06x} = {r:06x}")
-        # How much memory to show
-        colus = ""
+
         if input != "":
             temp = input.strip().split(" ")
             if len(temp) == 1:
-                self.write(f"{self.ram[int(temp[0],16)]:06x}")
+                self.write(f"{self.ram[int(temp[0])]:06x}")
                 return
             output = ""
             for i in range(int(temp[0], 10), int(temp[1], 10) + 1, 1):
                 output += f"{self.ram[i]:06x} "
             self.write(output)
             return
-
+        # How much memory to show
         top = max(i for (i, m) in enumerate(self.ram) if m != 0)
 
         # Show memory

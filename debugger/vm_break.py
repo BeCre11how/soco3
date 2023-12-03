@@ -44,7 +44,6 @@ class VirtualMachineBreak(VirtualMachineExtend):
 
             else:
                 if watchpoint_reached:
-                    self.write("watch triggered")
                     super().show()
                     self.state = VMState.STEPPING
                 if self.state == VMState.STEPPING:
@@ -96,8 +95,10 @@ class VirtualMachineBreak(VirtualMachineExtend):
     def _check_watchpoints(self):
         for x in self.watchpoints:
             if x[1] != self.ram[x[0]] and x[2]:
+                self.write(f"old: {x[1]} new: {self.ram[x[0]]}")
                 return True
             if x[0] < NUM_REG and x[1] != self.reg[x[0]] and not x[2]:
+                self.write(f"old: {x[1]} new: {self.reg[x[0]]}")
                 return True
         return False
 
