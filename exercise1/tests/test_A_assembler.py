@@ -1,6 +1,7 @@
 import subprocess
 import os
 from environment import environment
+
 # Support function
 def read_file(file_path):
     with open(file_path, 'r') as file:
@@ -166,6 +167,8 @@ def test_assembler_program5():
     assert output == expected_output, "Assembler output does not match expected output for " + program + ".as"
     
 ################################################################################################################
-#POSSIBLY FURTHER TESTS: (swp, inc, dec -> correspond to missing lines 91, 93, 95 in vm.py test coverage)
-#       Add Test that coveres line 80: beq -> if self.reg[arg0] == 0: self.ip = arg1
+#POSSIBLY FURTHER TESTS: (FROM ASSEMBLER: swp, inc, dec -> correspond to missing lines 91, 93, 95 in vm.py test coverage)
+#       Add Test that coveres vm.py line 80: beq -> if self.reg[arg0] == 0: self.ip = arg1
+#       Add Test that covers assembler.py line 53: elif 
 ################################################################################################################
+

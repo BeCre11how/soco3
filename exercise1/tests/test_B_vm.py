@@ -168,7 +168,7 @@ def test_vm_program5():
  
 ################################################################################################################
 #POSSIBLY FURTHER TESTS: (FROM ASSEMBLER: swp, inc, dec -> correspond to missing lines 91, 93, 95 in vm.py test coverage)
-#       Add Test that coveres vm line 80: beq -> if self.reg[arg0] == 0: self.ip = arg1
-#       Add TEst that covers assembler line 53: elif 
+#       Add Test that coveres vm.py line 80: beq -> if self.reg[arg0] == 0: self.ip = arg1
+#       Add Test that covers assembler.py line 53: elif 
 ################################################################################################################
 
