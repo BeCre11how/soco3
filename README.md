@@ -114,7 +114,7 @@ to achieve the above described behaviour the user can for example run `m`, for o
 
 ### 4.2 Breakpoint Addresses 
 For this feature to be enabled the user needs to run the vm_break.py. The user now has the following options:
-- set a breakpoint at the specified address
+- set a breakpoint at the specified address if no address specified ip taken as address
 - clear a breakpoint at the specified address
 
 to run this feature the user only has to specify `b 2`, to set a breakpoint at address 2, or `c 2`, to clear a breakpoint at address 2
@@ -138,7 +138,7 @@ For example if the user wants to run `memory`, he can achieve that by running `m
 
 ### 4.4 Watchpoints
 For this to be enabled one needs to run vm_break.py. The user can now watch value at certain memory address or register address:
-- set a watchpoint at the specified address, if the address is smaller than both register and ram size, a new watchpoint for both register and memory at that address is set
+- set a watchpoint at the specified address, if the address is smaller than both register and ram size, a new watchpoint for both register and memory at that address is set if no address specified ip taken as address
 - erase watchpoint deletes the before set watchpoint, both if both were set
 
 To run this the user can specify `w 20`, to set an address at position 20, and `e 20` to delete a watchpoint at address 20
