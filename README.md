@@ -17,6 +17,7 @@
     - program2.txt
     - ...
   - tests/
+    - environment.py
     - test_A_assembler.py
     - test_B_vm.py
     - test_C.py
@@ -29,6 +30,7 @@
 - `mx_files_ok/`: A directory containing correct `.mx` files used to compare the `assembler.py` output with and to test `vm.py` on specific instructions.
 - `vm_outputs_ok/`: A directory containing correct `.txt` files used to compare the `vm.py` output with.
 - `test/`: A directory containing all the test files that are ran using the `pytest` command.
+- `environment.py`: A file to define Python version; `python` as default; change to `python3` if needed.
 - `test_A_assembler.py`: A file containing tests that are ran on `assembler.py`.
 - `test_B_vm.py`: A file containing tests that are ran on `vm.py`.
 - `test_C.py`: A file containing all tests that are ran on `array.py` and `vm.py`.
@@ -50,13 +52,41 @@ Further explanation under # Task (D)
 
 ### Task (A)
 - `test_A_assembler.py`: Main file for this task; containing extensive tests on the `assembler.py`.
+This is the test suite for the assembler. It contains test for the functionality and correctness of the assembler.
+It imports the `subprocess` and `os` modules and environment from `environment.py` that defines the default python version.
 
+It uses the assembler at location `../vm/assembler.py` and test files in the `as_files_ok/` directory and compares them to corresponding files from `mx_files_ok/`. 
+
+Tests
+- `test_assembler_program_output`: Checks if the assembler creates an output file for a basic program.
+- `test_assembler_program_ex`: Tests a specific example program from the lecture, comparing its output against expected output.
+- `test_assembler_program1 to test_assembler_program5`: Each function tests different sets of assembly instructions, ensuring that the assembler handles various instructions correctly.
+
+Missing
+- Additional tests for new instructions implemented in later tasks of assignment.
 
 ### Task (B)
 - `test_B_vm.py`: Main file for this task; containing extensive tests on the `vm.py`.
+This is the test suite for the vm. It contains test for the functionality and correctness of the vm.
+It imports the `subprocess` and `os` modules and environment from `environment.py` that defines the default python version.
+
+It uses the assembler at location `../vm/vm.py` and test files in the `mx_files_ok/` directory and compares them to corresponding files from `vm_outputs_ok/`. 
+
+Tests
+- `test_vm_program_output`: Checks if the assembler creates an output file for a basic program.
+- `test_vm_program_ex`: Tests a specific example program from the lecture, comparing its output against expected output.
+- `test_vm_program1 to test_vm_program5`: Each function tests different sets of vm instructions, ensuring that the vm handles various instructions correctly.
+
+Missing
+- Additional tests for new instructions implemented in later tasks of assignment.
 
 ### Task (C)
 - `test_C.py`: Main file for this task; containing selected tests on `arrays.py` and `vm.py`.
+This is a test suite for the vm.py and arrays.py.
+It imports the `subprocess` and `os` modules and environment from `environment.py` that defines the default python version.
+
+- `test_vm_out_of_memory`: This test runs an instance of arrays.py with a `.as`-file that tries allocate space that exceeds the maximum memory. The test checks for the error message `AssertionError: Allocation 'array' requires too much memory`.
+- `test_vm_instruction_not_found`: This test runs an instance of vm.py with a `.mx`-file that contains an invalid instruction. The test checks if the error message contains `Unknown op`.
 
 ### Task (D)
 Test coverage is reported in % for all tests when ran using `pytest` from the `exercise 1` directory.
@@ -69,7 +99,6 @@ Lines to be excluded from the coverage report are the following:
 - Lines that are just `pass`: Unless specifically desired should be excluded.
 - Lines with just a docstring or `pragma: no cover`: Usefully if selected lines should be excluded (used during solving of further tasks).
 - Lines with defensive programming assertions: All lines that are not ran when files are called from tests.
-
 
 ## 2 Disassembler
 
