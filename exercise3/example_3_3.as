@@ -1,15 +1,19 @@
-# example_3_3.as
-
-# Reverse array in place
-ldc R0 0  # Initialize index i to 0
-ldc R1 1  # Initialize index j to (length - 1)
-
-loop_start:
-    ldr R2 R0
-ldr R3 R1
-str R3 R0
-str R2 R1
-inc R0
-dec R1
-beq loop_start
+# Count up to 3.
+# - R0: loop index.
+# - R1: loop limit.
+# - R2: array index.
+# - R3: temporary.
+ldc R0 0
+ldc R1 3
+ldc R2 @array
+loop:
+str R0 R2
+ldc R3 1
+add R0 R3
+add R2 R3
+cpy R3 R1
+sub R3 R0
+bne R3 @loop
 hlt
+.data
+array: 10
