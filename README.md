@@ -132,7 +132,7 @@ The user can choose from the following options:
 - `break` sets a breakpoint at the specified address(more in 4.2)
 - `clear` clears a breakpoint at the specified address(more in 4.2)
 - `watchpoint` sets a watchpoint at the specified address(more in 4.4)
-- `erasewatchpoint` deletes the watchpoint at that address
+- `erasewatchpoint` deletes the watchpoint at that address(more in 4.4)
 
 For example if the user wants to run `memory`, he can achieve that by running `m`, `me`, `mem`
 
