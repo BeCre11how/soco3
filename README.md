@@ -72,6 +72,28 @@ Lines to be excluded from the coverage report are the following:
 
 
 ## 2 Disassembler
+The disassembler serves as a translator from machine code back to human-readable assembly code. It is specifically designed to work with the architecture defined in `architecture.py`, which includes operation IDs, register numbers and values.
+
+### Usage
+To use the disassembler, run it from the terminal, using the following command:
+`python disassemble.py input_file.mx output_file.as` with
+- `input_file.mx`: The machine code file to be disassembled.
+- `output_file.as`: The assembly code file where the disassembled output will be written.
+
+### Functionality
+
+The disassembler performs the following steps:
+
+1. Reads the machine code instructions from the input file.
+2. Processes the instructions, identifying operation codes, registers, values and loops.
+3. Converts the machine code to assembly code.
+4. Writes the disassembled output to the specified output file.
+
+### Features
+
+- Loop Detection: Recognizes and adds loop labels for instructions ending with specific values (0x9 or 0x8).
+- Parameter Translation: Translates register numbers to assembly code format (e.g., R1).
+- Output Formatting: Writes the disassembled output with proper formatting.
 
 ## 3 New features and Problems - Assembler
 
