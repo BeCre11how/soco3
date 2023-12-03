@@ -102,8 +102,10 @@ The disassembler was thoroughly tested on its functionalities using pytest. This
 
 ## 3 New features and Problems - Assembler
 In the exercise 3 subdirectory one can find the files for the tasks described below. To run the files and see examples produced by the new operation:
-- `python ../vm/assembler.py desired_example.as desired_output.mx` followed by
-- `python ../vm/vm.py desired_output.mx`
+- `python ../vm/assembler.py desired_example.as desired_assembler_output.mx` followed by
+- `python ../vm/vm.py desired_assembler_output.mx desired_vm_output.txt`
+For exercise 3.3, replace `assembler.py` with `arrays.py`.
+
 ### 3.1 Increment and decrement
 The assembly language now has the following two additional commands:
 - `inc` increases the value stored at the specified register by 1
@@ -119,6 +121,20 @@ The assembly language now has the following additional feature:
 How to use it, format is rr (Register, Register):
 - swp R1 R2
 ### 3.3 Reverse array in place
+How the program works:
+1. Sets the length of the array. The user can choose the length of at most the number specified in line 81.
+2. Initializes the array consisting of the numbers from the array length to 1 and prints it simultaneously.
+3. Uses 4 registers for swapping: 2 registers with indices and 2 storage registers.
+4. Loads values of head- and tailpointer and swaps them.
+5. Increases headpointer by one.
+6. Checks break condition for even array length.
+7. Decreases the tailpointer by one.
+8. Checks break condition for odd array length.
+9. Prints reversed array.
+
+How to use it:
+- Specify the desired array length in line 4 of the code (replace the "14")
+- Convert and run the program as described above.
 
 
 ## 4 New features - Debugger
