@@ -37,6 +37,7 @@ class VirtualMachineExtend(VirtualMachineStep):
     # [/interact]
     def __check_if_in_ops(self, arg):
         inOps = False
+        arg = arg.lower()
         val = ""
         for key in self.handlers:
             if key.startswith(arg):
@@ -56,6 +57,7 @@ class VirtualMachineExtend(VirtualMachineStep):
     def _do_memory(self, args):
         arg = " ".join(args) if isinstance(args, list) else ""
         super().show(arg)
+        return True
     # [/memory]
 
     def _do_quit(self, addr):

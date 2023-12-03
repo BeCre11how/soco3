@@ -1,5 +1,6 @@
 import subprocess
 import os
+from environment import environment
     
 # Arrays path
 arrays_path = "../vm/arrays.py"
@@ -22,7 +23,7 @@ def test_vm_out_of_memory():
     input_path = "as_files_ok/" + program + ".as"
 
     # Run the VM on the program and save error messages
-    result = subprocess.run(["python", arrays_path, input_path, output_path], stderr=subprocess.PIPE, text=True)
+    result = subprocess.run([environment, arrays_path, input_path, output_path], stderr=subprocess.PIPE, text=True)
 
     assert result.returncode != 0, "Arrays should have exited with an error"
     assert "AssertionError: Allocation 'array' requires too much memory" in result.stderr
@@ -41,7 +42,7 @@ def test_vm_instruction_not_found():
     input_path = "mx_files_ok/" + program + ".mx"
 
     # Run the VM on the program and save error messages
-    result = subprocess.run(["python", vm_path, input_path, output_path], stderr=subprocess.PIPE, text=True)
+    result = subprocess.run([environment, vm_path, input_path, output_path], stderr=subprocess.PIPE, text=True)
 
     assert result.returncode != 0, "VM should have exited with an error"
     assert "Unknown op" in result.stderr

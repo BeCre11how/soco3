@@ -125,21 +125,26 @@ class VirtualMachineBase:
     def show(self, input=""):
         """Show the IP, registers, and memory."""
         # Show IP and registers
-        self.write(f"IP{' ' * 6}= {self.ip:06x}")
-        for (i, r) in enumerate(self.reg):
-            self.write(f"R{i:06x} = {r:06x}")
+        if input == "":
+            self.write(f"IP{' ' * 6}= {self.ip:06x}")
+            for (i, r) in enumerate(self.reg):
+                self.write(f"R{i:06x} = {r:06x}")
 
-        # How much memory to show
         if input != "":
             temp = input.strip().split(" ")
             if len(temp) == 1:
-                self.write(f"{int(temp[0],16):06x}    {self.ram[int(temp[0],16)]:06x}")
+                self.write(f"{self.ram[int(temp[0])]:06x}")
                 return
-
-        top = max(i for (i, m) in enumerate(self.ram) if m != 0) if input == "" else int(temp[1],16)
+            output = ""
+            for i in range(int(temp[0], 10), int(temp[1], 10) + 1, 1):
+                output += f"{self.ram[i]:06x} "
+            self.write(output)
+            return
+        # How much memory to show
+        top = max(i for (i, m) in enumerate(self.ram) if m != 0)
 
         # Show memory
-        base = 0 if input == "" else int(temp[0], 16)
+        base = 0
         while base <= top:
             output = f"{base:06x}: "
             for i in range(COLUMNS):

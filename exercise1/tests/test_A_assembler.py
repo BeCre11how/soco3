@@ -1,6 +1,6 @@
 import subprocess
 import os
-
+from environment import environment
 # Support function
 def read_file(file_path):
     with open(file_path, 'r') as file:
@@ -25,7 +25,7 @@ def test_assembler_program_output():
     input_path = "as_files_ok/" + program + ".as"
     
     # Run the assembler on program1.as
-    subprocess.run(["python", assembler_path, input_path, output_path])
+    subprocess.run([environment, assembler_path, input_path, output_path])
     
     output_bool = os.path.exists(output_path)
     os.remove(output_path)
@@ -46,7 +46,7 @@ def test_assembler_program_ex():
     expected_output_path = "mx_files_ok/" + program + ".mx"
     
     # Run the assembler on count_up.as
-    subprocess.run(["python", assembler_path, input_path, output_path])
+    subprocess.run([environment, assembler_path, input_path, output_path])
     
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)
@@ -68,7 +68,7 @@ def test_assembler_program1():
     expected_output_path = "mx_files_ok/" + program + ".mx"
     
     # Run the assembler on program1.as
-    subprocess.run(["python", assembler_path, input_path, output_path])
+    subprocess.run([environment, assembler_path, input_path, output_path])
     
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)
@@ -90,7 +90,7 @@ def test_assembler_program2():
     expected_output_path = "mx_files_ok/" + program + ".mx"
     
     # Run the assembler on program2.as
-    subprocess.run(["python", assembler_path, input_path, output_path])
+    subprocess.run([environment, assembler_path, input_path, output_path])
 
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)
@@ -112,7 +112,7 @@ def test_assembler_program3():
     expected_output_path = "mx_files_ok/" + program + ".mx"
     
     # Run the assembler on program3.as
-    subprocess.run(["python", assembler_path, input_path, output_path])
+    subprocess.run([environment, assembler_path, input_path, output_path])
     
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)
@@ -134,7 +134,7 @@ def test_assembler_program4():
     expected_output_path = "mx_files_ok/" + program + ".mx"
     
     # Run the assembler on program4.as
-    subprocess.run(["python", assembler_path, input_path, output_path])
+    subprocess.run([environment, assembler_path, input_path, output_path])
 
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)
@@ -156,7 +156,7 @@ def test_assembler_program5():
     expected_output_path = "mx_files_ok/" + program + ".mx"
     
     # Run the assembler on program5.as
-    subprocess.run(["python", assembler_path, input_path, output_path])
+    subprocess.run([environment, assembler_path, input_path, output_path])
 
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)

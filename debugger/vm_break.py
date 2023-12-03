@@ -1,5 +1,5 @@
 
-from architecture import OPS, VMState
+from architecture import OPS, VMState, NUM_REG
 from vm_extend import VirtualMachineExtend
 
 
@@ -13,6 +13,7 @@ class VirtualMachineBreak(VirtualMachineExtend):
             "break": self._do_add_breakpoint,
             "clear": self._do_clear_breakpoint,
             "watchpoint": self._do_add_watchpoint,
+            "erasewatchpoint": self._do_erase_watchpoint
         }
     # [/init]
 
@@ -29,10 +30,9 @@ class VirtualMachineBreak(VirtualMachineExtend):
     def run(self):
         self.state = VMState.STEPPING
         while self.state != VMState.FINISHED:
-            self._check_watchpoints()
+            watchpoint_reached = self._check_watchpoints()
             self._update_watchpoints()
             instruction = self.ram[self.ip]
-            print(instruction)
             op, arg0, arg1 = self.decode(instruction)
 
             if op == OPS["brk"]["code"]:
@@ -43,6 +43,9 @@ class VirtualMachineBreak(VirtualMachineExtend):
                 self.execute(op, arg0, arg1)
 
             else:
+                if watchpoint_reached:
+                    super().show()
+                    self.state = VMState.STEPPING
                 if self.state == VMState.STEPPING:
                     self.interact(self.ip)
                 self.ip += 1
@@ -52,7 +55,7 @@ class VirtualMachineBreak(VirtualMachineExtend):
     # [add]
     def _do_add_breakpoint(self, addr):
         if self.ram[addr] == OPS["brk"]["code"]:
-            return
+            return True
         self.breaks[addr] = self.ram[addr]
         self.ram[addr] = OPS["brk"]["code"]
         return True
@@ -61,34 +64,43 @@ class VirtualMachineBreak(VirtualMachineExtend):
     # [clear]
     def _do_clear_breakpoint(self, addr):
         if self.ram[addr] != OPS["brk"]["code"]:
-            return
+            return True
         self.ram[addr] = self.breaks[addr]
         del self.breaks[addr]
         return True
     # [/clear]
 
     def _do_add_watchpoint(self, addr):
-        print(addr)
         assert addr < len(self.ram), f"addr not valid in memory nor registers\n"
-        '''
-        if addr in self.reg:
-            self.watchpoints.append([addr, self.reg[addr]])'''
-        if addr in self.ram:
-            self.watchpoints.append([addr, self.ram[addr]])
 
+        if addr < len(self.ram):
+            val = self.ram[addr]
+            self.watchpoints.append([addr, val, True])
+        if addr < len(self.reg):
+            val = self.reg[addr]
+            self.watchpoints.append([addr, val, False])
+        return True
 
-    def _check_watchpoints(self):
-        for addr, oldval in self.watchpoints:
-            if oldval != self.ram[addr]:
-                self.write(f"value at adress {addr} changed")
-                self.show()
+    def _do_erase_watchpoint(self, addr):
+        for i in range(len(self.watchpoints) -1, -1, -1):
+            curr = self.watchpoints[i][0]
+            if curr == addr:
+                self.watchpoints.pop(i)
+        return True
 
     def _update_watchpoints(self):
         for x in self.watchpoints:
-            '''
-            if x[0] in self.reg:
-                x[1] = self.reg[x[0]]'''
-            if x[0] in self.ram:
-                x[1] = self.ram[x[0]]
+            x[1] = self.ram[x[0]] if x[2] else self.reg[x[0]]
+
+    def _check_watchpoints(self):
+        for x in self.watchpoints:
+            if x[1] != self.ram[x[0]] and x[2]:
+                self.write(f"old: {x[1]} new: {self.ram[x[0]]}")
+                return True
+            if x[0] < NUM_REG and x[1] != self.reg[x[0]] and not x[2]:
+                self.write(f"old: {x[1]} new: {self.reg[x[0]]}")
+                return True
+        return False
+
 if __name__ == "__main__":
     VirtualMachineBreak.main()
