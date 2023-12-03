@@ -62,15 +62,15 @@ cpy R3 R1
 sub R3 R2
 
 end:
-# if odd elements in array, will break here
+# if odd elements in array, will break here, else swap remaining elements
 bne R3 @loop2
 
 ldc R3 @arr_length
 ldr R1 R3
 ldc R2 @array
 inc R2
-#print array
 
+#print array
 loop3:
 prm R2
 inc R2
