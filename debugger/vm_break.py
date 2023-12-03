@@ -1,5 +1,5 @@
 
-from architecture import OPS, VMState
+from architecture import OPS, VMState, NUM_REG
 from vm_extend import VirtualMachineExtend
 
 
@@ -13,6 +13,7 @@ class VirtualMachineBreak(VirtualMachineExtend):
             "break": self._do_add_breakpoint,
             "clear": self._do_clear_breakpoint,
             "watchpoint": self._do_add_watchpoint,
+            "erasewatchpoint": self._do_erase_watchpoint
         }
     # [/init]
 
@@ -81,6 +82,13 @@ class VirtualMachineBreak(VirtualMachineExtend):
             self.watchpoints.append([addr, val, False])
         return True
 
+    def _do_erase_watchpoint(self, addr):
+        for i in range(len(self.watchpoints) -1, -1, -1):
+            curr = self.watchpoints[i][0]
+            if curr == addr:
+                self.watchpoints.pop(i)
+        return True
+
     def _update_watchpoints(self):
         for x in self.watchpoints:
             x[1] = self.ram[x[0]] if x[2] else self.reg[x[0]]
@@ -89,7 +97,7 @@ class VirtualMachineBreak(VirtualMachineExtend):
         for x in self.watchpoints:
             if x[1] != self.ram[x[0]] and x[2]:
                 return True
-            if x[1] != self.reg[x[0]] and not x[2]:
+            if x[0] < NUM_REG and x[1] != self.reg[x[0]] and not x[2]:
                 return True
         return False
 
