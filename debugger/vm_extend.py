@@ -37,6 +37,7 @@ class VirtualMachineExtend(VirtualMachineStep):
     # [/interact]
     def __check_if_in_ops(self, arg):
         inOps = False
+        arg = arg.lower()
         val = ""
         for key in self.handlers:
             if key.startswith(arg):

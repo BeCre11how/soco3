@@ -129,10 +129,16 @@ The user can choose from the following options:
 - `quit` quits the vm
 - `run` runs the program
 - `step` executes the next step of the program
-- `break` sets a breakpoint at the specified address
-- `clear` clears a breakpoint at the specified address
-- `watchpoint` sets a watchpoint at the specified address
+- `break` sets a breakpoint at the specified address(more in 4.2)
+- `clear` clears a breakpoint at the specified address(more in 4.2)
+- `watchpoint` sets a watchpoint at the specified address(more in 4.4)
+- `erasewatchpoint` deletes the watchpoint at that address
 
 For example if the user wants to run `memory`, he can achieve that by running `m`, `me`, `mem`
 
 ### 4.4 Watchpoints
+For this to be enabled one needs to run vm_break.py. The user can now watch value at certain memory address or register address:
+- set a watchpoint at the specified address, if the address is smaller than both register and ram size, a new watchpoint for both register and memory at that address is set
+- erase watchpoint deletes the before set watchpoint, both if both were set
+
+To run this the user can specify `w 20`, to set an address at position 20, and `e 20` to delete a watchpoint at address 20
