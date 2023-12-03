@@ -95,7 +95,7 @@ How to use it, format is rr (Register, Register):
 
 
 ## 4 New features - Debugger
-to run the debugger you have different options, run vm_step.py for 4.1, vm_extend.py for 4.3, and vm_break.py for all features
+to run the debugger you have different options, run `vm_step.py` for `4.1`, `vm_extend.py` for `4.3`, and `vm_break.py` for `all` features
 one additional note, when vm_base or vm_step is run, command have to be specified by either only the initial char of the method or the entire name
 
 
@@ -109,15 +109,15 @@ with this feature the user now has 3 options:
 - print memory at certain address
 - print the range from initial address to end address including end
 
-to achieve the above described behaviour the user can for example run m, for option 1,
-m 2 for option 2 and m 2 10 for option 3
+to achieve the above described behaviour the user can for example run `m`, for option 1,
+`m 2` for option 2 and `m 2 10` for option 3
 
 ### 4.2 Breakpoint Addresses 
 For this feature to be enabled the user needs to run the vm_break.py. The user now has the following options:
 - set a breakpoint at the specified address
 - clear a breakpoint at the specified address
 
-to run this feature the user only has to specify b 2, to set a breakpoint at address 2, or c 2, to clear a breakpoint at address 2
+to run this feature the user only has to specify `b 2`, to set a breakpoint at address 2, or `c 2`, to clear a breakpoint at address 2
 
 ### 4.3 Command Completion
 Only vm_extend.py has to be run, it also works with vm_break.py. The user can now type any leading matching characters of the commands he wants to execute
