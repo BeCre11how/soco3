@@ -1,5 +1,4 @@
 ldc R2 @arr_length
-ldc R0 0
 
 #set length of array here
 ldc R1 14
