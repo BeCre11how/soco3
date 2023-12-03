@@ -56,6 +56,7 @@ class VirtualMachineExtend(VirtualMachineStep):
     def _do_memory(self, args):
         arg = " ".join(args) if isinstance(args, list) else ""
         super().show(arg)
+        return True
     # [/memory]
 
     def _do_quit(self, addr):
