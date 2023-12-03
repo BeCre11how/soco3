@@ -134,7 +134,7 @@ class VirtualMachineBase:
         if input != "":
             temp = input.strip().split(" ")
             if len(temp) == 1:
-                self.write(f"{int(temp[0],16):06x}    {self.ram[int(temp[0],16)]:06x}")
+                self.write(f"{self.ram[int(temp[0],16)]:06x}")
                 return
             output = ""
             for i in range(int(temp[0], 10), int(temp[1], 10) + 1, 1):
