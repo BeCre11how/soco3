@@ -1,5 +1,6 @@
 import subprocess
 import os
+from environment import environment
 
 # Support function
 def read_file(file_path):
@@ -24,7 +25,7 @@ def test_vm_program_output():
     input_path = "mx_files_ok/" + program + ".mx"
     
     # Run the VM on the program
-    subprocess.run(["python", vm_path, input_path, output_path])
+    subprocess.run([environment, vm_path, input_path, output_path])
 
     output_bool = os.path.exists(output_path)
     os.remove(output_path)
@@ -45,7 +46,7 @@ def test_vm_program_ex():
     expected_output_path = "vm_outputs_ok/" + program + ".txt"
     
     # Run the VM on the program
-    subprocess.run(["python", vm_path, input_path, output_path])
+    subprocess.run([environment, vm_path, input_path, output_path])
     
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)
@@ -68,7 +69,7 @@ def test_vm_program1():
     expected_output_path = "vm_outputs_ok/" + program + ".txt"
     
     # Run the VM on the program
-    subprocess.run(["python", vm_path, input_path, output_path])
+    subprocess.run([environment, vm_path, input_path, output_path])
     
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)
@@ -90,7 +91,7 @@ def test_vm_program2():
     expected_output_path = "vm_outputs_ok/" + program + ".txt"
     
     # Run the VM on the program
-    subprocess.run(["python", vm_path, input_path, output_path])
+    subprocess.run([environment, vm_path, input_path, output_path])
     
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)
@@ -112,7 +113,7 @@ def test_vm_program3():
     expected_output_path = "vm_outputs_ok/" + program + ".txt"
     
     # Run the VM on the program
-    subprocess.run(["python", vm_path, input_path, output_path])
+    subprocess.run([environment, vm_path, input_path, output_path])
     
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)
@@ -134,7 +135,7 @@ def test_vm_program4():
     expected_output_path = "vm_outputs_ok/" + program + ".txt"
     
     # Run the VM on the program
-    subprocess.run(["python", vm_path, input_path, output_path])
+    subprocess.run([environment, vm_path, input_path, output_path])
     
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)
@@ -156,7 +157,7 @@ def test_vm_program5():
     expected_output_path = "vm_outputs_ok/" + program + ".txt"
     
     # Run the VM on the program
-    subprocess.run(["python", vm_path, input_path, output_path])
+    subprocess.run([environment, vm_path, input_path, output_path])
     
     output = read_file(output_path)
     expected_output = read_file(expected_output_path)
