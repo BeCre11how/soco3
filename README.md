@@ -74,6 +74,25 @@ Lines to be excluded from the coverage report are the following:
 ## 2 Disassembler
 
 ## 3 New features and Problems - Assembler
+In the exercise 3 subdirectory one can find the files for the tasks described below. To run the files and see examples produced by the new operation:
+- `python ../vm/assembler.py desired_example.as desired_output.mx` followed by
+- `python ../vm/vm.py desired_output.mx`
+### 3.1 Increment and decrement
+The assembly language now has the following two additional commands:
+- `inc` increases the value stored at the specified register by 1
+- `dec` decreases the values stored at the specified register by 1
+
+How to use it, format is r- (Register, nothing):
+- inc R1
+- dec R2
+### 3.2 Swap values
+The assembly language now has the following additional feature:
+- `swp` swaps the two values at the specified addresses
+
+How to use it, format is rr (Register, Register):
+- swp R1 R2
+### 3.3 Reverse array in place
+
 
 ## 4 New features - Debugger
 to run the debugger you have different options, run vm_step.py for 4.1, vm_extend.py for 4.3, and vm_break.py for all features
