@@ -6,7 +6,7 @@ ldc R1 28
 str R1 R2
 
 ldc R2 @array
-# initialise array
+# initialise array and print
 loop1:
 str R1 R2
 prm R2
@@ -68,11 +68,12 @@ end:
 # if odd elements in array, will break here
 bne R3 @loop2
 
-#print array
 ldc R3 @arr_length
 ldr R1 R3
 ldc R0 0
 ldc R2 @array
+
+#print array
 
 loop3:
 prm R2
