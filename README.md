@@ -207,7 +207,7 @@ The user can choose from the following options:
 For example if the user wants to run `memory`, he can achieve that by running `m`, `me`, `mem`
 
 ### 4.4 Watchpoints
-For this to be enabled one needs to run vm_break.py. The user can now watch value at certain memory address or register address:
+For this to be enabled one needs to run vm_break.py. The user can now watch the value at certain memory address:
 - set a watchpoint at the specified address, if the address is smaller than ram size, a new watchpoint for memory at that address is set. If no address specified ip taken as address
 - erase watchpoint deletes the before set watchpoint
 
