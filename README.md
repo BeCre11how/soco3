@@ -110,7 +110,6 @@ To use the disassembler, run it from the terminal, using the following command:
 - `output_file.as`: The assembly code file where the disassembled output will be written.
 
 ### Functionality
-
 The disassembler performs the following steps:
 
 1. Reads the machine code instructions from the input file.
@@ -119,7 +118,6 @@ The disassembler performs the following steps:
 4. Writes the disassembled output to the specified output file.
 
 ### Features
-
 - Loop Detection: Recognizes and adds loop labels for instructions ending with specific values (0x9 or 0x8).
 - Parameter Translation: Translates register numbers to assembly code format (e.g., R1).
 - Output Formatting: Writes the disassembled output with proper formatting.
@@ -143,12 +141,14 @@ The assembly language now has the following two additional commands:
 How to use it, format is r- (Register, nothing):
 - inc R1
 - dec R2
+
 ### 3.2 Swap values
 The assembly language now has the following additional feature:
 - `swp` swaps the two values at the specified addresses
 
 How to use it, format is rr (Register, Register):
 - swp R1 R2
+
 ### 3.3 Reverse array in place
 How the program works:
 1. Sets the length of the array. The user can choose the length of at most the number specified in line 81.
@@ -165,11 +165,9 @@ How to use it:
 - Specify the desired array length in line 4 of the code (replace the "14")
 - Convert and run the program as described above.
 
-
 ## 4 New features - Debugger
 to run the debugger you have different options, run `vm_step.py` for `4.1`, `vm_extend.py` for `4.3`, and `vm_break.py` for `all` features
 one additional note, when vm_base or vm_step is run, command have to be specified by either only the initial char of the method or the entire name
-
 
 ### Usage(bash):
 Inside the `debugger` directory:
@@ -209,8 +207,8 @@ The user can choose from the following options:
 For example if the user wants to run `memory`, he can achieve that by running `m`, `me`, `mem`
 
 ### 4.4 Watchpoints
-For this to be enabled one needs to run vm_break.py. The user can now watch value at certain memory address or register address:
-- set a watchpoint at the specified address, if the address is smaller than both register and ram size, a new watchpoint for both register and memory at that address is set if no address specified ip taken as address
-- erase watchpoint deletes the before set watchpoint, both if both were set
+For this to be enabled one needs to run vm_break.py. The user can now watch the value at certain memory address:
+- set a watchpoint at the specified address, if the address is smaller than ram size, a new watchpoint for memory at that address is set. If no address specified ip taken as address
+- erase watchpoint deletes the before set watchpoint
 
-To run this the user can specify `w 20`, to set an address at position 20, and `e 20` to delete a watchpoint at address 20
+To run this the user can specify `w 20`, to set a watchpoint at position 20, and `e 20` to delete a watchpoint at address 20
