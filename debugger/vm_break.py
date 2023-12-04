@@ -75,10 +75,7 @@ class VirtualMachineBreak(VirtualMachineExtend):
 
         if addr < len(self.ram):
             val = self.ram[addr]
-            self.watchpoints.append([addr, val, True])
-        if addr < len(self.reg):
-            val = self.reg[addr]
-            self.watchpoints.append([addr, val, False])
+            self.watchpoints.append([addr, val])
         return True
 
     def _do_erase_watchpoint(self, addr):
@@ -94,11 +91,8 @@ class VirtualMachineBreak(VirtualMachineExtend):
 
     def _check_watchpoints(self):
         for x in self.watchpoints:
-            if x[1] != self.ram[x[0]] and x[2]:
+            if x[1] != self.ram[x[0]]:
                 self.write(f"old: {x[1]} new: {self.ram[x[0]]}")
-                return True
-            if x[0] < NUM_REG and x[1] != self.reg[x[0]] and not x[2]:
-                self.write(f"old: {x[1]} new: {self.reg[x[0]]}")
                 return True
         return False
 
