@@ -211,4 +211,4 @@ For this to be enabled one needs to run vm_break.py. The user can now watch the 
 - set a watchpoint at the specified address, if the address is smaller than ram size, a new watchpoint for memory at that address is set. If no address specified ip taken as address
 - erase watchpoint deletes the before set watchpoint
 
-To run this the user can specify `w 20`, to set an address at position 20, and `e 20` to delete a watchpoint at address 20
+To run this the user can specify `w 20`, to set a watchpoint at position 20, and `e 20` to delete a watchpoint at address 20
