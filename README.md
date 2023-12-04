@@ -208,7 +208,7 @@ For example if the user wants to run `memory`, he can achieve that by running `m
 
 ### 4.4 Watchpoints
 For this to be enabled one needs to run vm_break.py. The user can now watch value at certain memory address or register address:
-- set a watchpoint at the specified address, if the address is smaller than both register and ram size, a new watchpoint for both register and memory at that address is set if no address specified ip taken as address
-- erase watchpoint deletes the before set watchpoint, both if both were set
+- set a watchpoint at the specified address, if the address is smaller than ram size, a new watchpoint for memory at that address is set. If no address specified ip taken as address
+- erase watchpoint deletes the before set watchpoint
 
 To run this the user can specify `w 20`, to set an address at position 20, and `e 20` to delete a watchpoint at address 20
